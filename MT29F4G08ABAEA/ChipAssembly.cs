@@ -2,7 +2,7 @@ using NAND_Prog;
 using System;
 using System.ComponentModel.Composition;
 
-namespace MT29F1G08ABADA
+namespace MT29F4G08ABAEA
 {
     /*
      use the design :
@@ -32,8 +32,8 @@ namespace MT29F1G08ABADA
         ChipAssembly()
         {
             myChip.devManuf = "Micron";
-            myChip.name = "MT29F1G08ABADA";
-            myChip.chipID = "2CF1809502";      // device ID - 2Ch F1h 80h 95h 02h (Micron-MT29F1G08ABADAWP-IT_D-datasheet.pdf page 33)
+            myChip.name = "MT29F4G08ABAEA";
+            myChip.chipID = "2CF1809502";      // device ID - 2Ch F1h 80h 95h 02h (Micron-MT29F4G08ABAEAWP-IT_D-datasheet.pdf page 33)
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
@@ -139,9 +139,9 @@ namespace MT29F1G08ABADA
                 case 1:
                     str_result += "Device ";
                     if (bt == 0xF1)
-                        str_result += "is MT29F1G08ABADA";
+                        str_result += "is MT29F4G08ABAEA";
                     else
-                        str_result += "is not MT29F1G08ABADA";
+                        str_result += "is not MT29F4G08ABAEA";
                     str_result += Environment.NewLine;
                     break;
 
