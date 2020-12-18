@@ -39,10 +39,10 @@ namespace MT29F4G08ABAEA
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
             myChip.spareBytesPP = 64;          // size Spare Area - 64 byte
             myChip.pagesPB = 64;               // the number of pages per block - 64 
-            myChip.bloksPLUN = 1024;           // number of blocks in CE - 1024
+            myChip.bloksPLUN = 4096;           // number of blocks in CE - 1024
             myChip.LUNs = 1;                   // the amount of CE in the chip
             myChip.colAdrCycles = 2;           // cycles for column addressing
-            myChip.rowAdrCycles = 2;           // cycles for row addressing 
+            myChip.rowAdrCycles = 3;           // cycles for row addressing 
             myChip.vcc = Vcc.v3_3;             // supply voltage
 
         #endregion
@@ -58,8 +58,18 @@ namespace MT29F4G08ABAEA
                    Operations("PageProgram_80h_10h");
 
             #endregion
+                
+                
 
-
+            #region Initial Invalid Block (s)
+            
+            //------- Select the Initial Invalid Block (s) algorithm    https://github.com/JuliProg/Wiki/wiki/InitialInvalidBlock-----------
+                
+            myChip.InitialInvalidBlock = "InitInvalidBlock_v1";
+                
+            #endregion
+                
+                
 
             #region Chip registers (optional)
 
