@@ -1,0 +1,75 @@
+name: Create new chip
+env:
+      NEW_CHIP: ${{ github.event.client_payload.newChip }}
+      TEMPLATE_CHIP: ${{ github.event.client_payload.templateChip }}
+                                
+on: 
+ 
+  repository_dispatch:
+    branches: [ master ]
+    types: on-create-new-chip
+    
+
+jobs:
+ 
+   
+  Build_new_chip:
+    runs-on: windows-latest 
+   
+    steps:
+   
+       
+    - name: Checkout new chip repo
+      uses: actions/checkout@v2
+      with:
+       path: chip
+       token: ${{ secrets.GITHUB_TOKEN }} 
+       
+   
+    - name: Get chip dependency
+      uses: actions/checkout@v2
+      with: 
+       token: ${{ secrets.GITHUB_TOKEN }}
+       repository: JuliProg/Software
+       path: references
+
+    - name: Get CICDassist
+      uses: actions/checkout@v2
+      with: 
+       token: ${{ secrets.GITHUB_TOKEN }}
+       repository: JuliProg/CICDtools
+       path: my-tools
+       
+    
+    - name: Refactoring new repo
+      working-directory: my-tools
+      run : .\CICDassist.exe --create "$env:NEW_CHIP" "$env:TEMPLATE_CHIP"  
+      
+      
+    - name: Push repo-changes to GitHub
+      shell: bash 
+      working-directory: chip
+      run: |
+           git config --global user.email "juliprog1110.gmail.com"
+           git config --global user.name "JuliProg"
+           git add .
+           git commit -m 'automated add new chip'
+           git push origin master
+  
+      
+    - name: Prepaire project enviroment 
+      working-directory: my-tools
+      run : .\CICDassist.exe --prebuild
+   
+    - name: Build new chip
+      working-directory: chip
+      run: dotnet build -o ..\publish
+   
+    - name: Publish new chip
+      env: 
+        MYSERVERPAT :  ${{ secrets.JP_PAT }} 
+      working-directory: my-tools
+      run : .\CICDassist.exe --publish "$env:NEW_CHIP" "$env:MYSERVERPAT"
+      
+     
+   
