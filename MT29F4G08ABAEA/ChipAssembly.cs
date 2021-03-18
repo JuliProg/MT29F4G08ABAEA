@@ -13,27 +13,34 @@ namespace MT29F4G08ABAEA
 
     for automatically include <some code> in the READMY.md file in the repository
     */
-    #region 
-    // Warning !!!
-    // This chip requires the first command after power supply to issue a Reset command
-    #endregion
+   
     
-    
-    #region
+   
     public class ChipAssembly
     {
         [Export("Chip")]
         ChipPrototype myChip = new ChipPrototype();
-        #endregion
+
 
 
         #region Chip parameters
+
+        //--------------Warning!!!!!!!!!!!!!!!-------------------------------------------
+        //
+        //   The first operation must be a command
+        //   Reset  !!!
+        //
+        //--------------------Vendor Specific Pin configuration---------------------------
+
+        //  VSP1(38pin) - NC    
+        //  VSP2(35pin) - NC
+        //  VSP3(20pin) - NC
 
         ChipAssembly()
         {
             myChip.devManuf = "Micron";
             myChip.name = "MT29F4G08ABAEA";
-            myChip.chipID = "2CDC90A654";      // device ID - 
+            myChip.chipID = "2CDC90A654";      // device ID - 2Ch DCh 90h A6h 54h
 
             myChip.width = Organization.x8;    // chip width - 8 bit
             myChip.bytesPP = 2048;             // page size - 2048 byte (2Kb)
