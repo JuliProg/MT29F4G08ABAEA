@@ -13,13 +13,16 @@ namespace MT29F4G08ABAEA
 
     for automatically include <some code> in the READMY.md file in the repository
     */
-   
-    
-   
+
+    public class ChipPrototype_v1 : ChipPrototype
+    {
+        public int EccBits;
+    }
+
     public class ChipAssembly
     {
         [Export("Chip")]
-        ChipPrototype myChip = new ChipPrototype();
+        ChipPrototype myChip = new ChipPrototype_v1();
 
 
 
@@ -51,8 +54,9 @@ namespace MT29F4G08ABAEA
             myChip.colAdrCycles = 2;           // cycles for column addressing
             myChip.rowAdrCycles = 3;           // cycles for row addressing 
             myChip.vcc = Vcc.v3_3;             // supply voltage
+            (myChip as ChipPrototype_v1).EccBits = 1;                // required Ecc bits for each 512 bytes
 
-        #endregion
+            #endregion
 
 
             #region Chip operations

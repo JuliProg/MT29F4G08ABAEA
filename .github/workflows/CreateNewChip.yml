@@ -2,12 +2,13 @@ name: Create new chip
 env:
       NEW_CHIP: ${{ github.event.client_payload.newChip }}
       TEMPLATE_CHIP: ${{ github.event.client_payload.templateChip }}
+      CHIP_DESCR: ${{ github.event.client_payload.chip_description }}
                                 
 on: 
  
   repository_dispatch:
     branches: [ master ]
-    types: on-create-new-chip
+    types: on-create-new-chip-v1
     
 
 jobs:
@@ -42,8 +43,11 @@ jobs:
        
     
     - name: Refactoring new repo
-      working-directory: my-tools
-      run : .\CICDassist.exe --create "$env:NEW_CHIP" "$env:TEMPLATE_CHIP"  
+      #working-directory: my-tools
+      #run : .\CICDassist.exe --create "$env:NEW_CHIP" "$env:TEMPLATE_CHIP" "$env:CHIP_DESCR" 
+      shell: bash 
+      working-directory: my-tools         
+      run : ./CICDassist.exe --create $NEW_CHIP $TEMPLATE_CHIP $CHIP_DESCR 
       
       
     - name: Push repo-changes to GitHub
