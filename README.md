@@ -10,8 +10,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
 
 <section class = "listing">
 
-# Chip parameters
-
+# Chip parameters
 ```c#
 
 
@@ -44,8 +43,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
             (myChip as ChipPrototype_v1).EccBits = 1;                // required Ecc bits for each 512 bytes
 
 ```
-# Chip operations
-
+# Chip operations
 ```c#
 
 
@@ -57,8 +55,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                    Operations("PageProgram_80h_10h");
 
 ```
-# Initial Invalid Block (s)
-
+# Initial Invalid Block (s)
 ```c#
 
             
@@ -67,8 +64,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
             myChip.InitialInvalidBlock = "InitInvalidBlock_v1";
                 
 ```
-# Chip registers (optional)
-
+# Chip registers (optional)
 ```c#
 
 
@@ -96,8 +92,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
                 Operations("OTP_Mode_Off_v1");    
 
 ```
-# Interpretation of ID-register values ​​(optional)
-
+# Interpretation of ID-register values ​​(optional)
 ```c#
 
 
@@ -105,6 +100,7 @@ Dependency injection, DI based on MEF framework is used to connect the chip to t
         
 ```
 </section>
+
 
 
 
